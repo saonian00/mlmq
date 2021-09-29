@@ -1,0 +1,19 @@
+<view class="pageView">
+    <block>
+        <view class="notice">
+          租车套餐要求身份证图片上传验证
+        </view>
+        <view class="itemView">
+            <image onTap="click" data-type="frontSide" mode="scaleToFill" src="{{frontSideUrl?frontSideUrl:'/res/icon_idCard1.png'}}"/>
+            <view>身份证正面</view>
+        </view>
+        <view class="itemView">
+            <image onTap="click" data-type="reverseSide" mode="scaleToFill" src="{{reverseSideUrl?reverseSideUrl:'/res/icon_idCard2.png'}}"/>
+            <view class="itemText">身份证反面</view>
+        </view>
+    </block>
+    <view class="footerView">
+        <button class="btn" style="color: #108ee9; background: white; margin-right: 20rpx" onTap="click" data-type='later'>稍后认证</button>
+        <button class="btn" disabled="{{saveIng}}" loading="{{saveIng}}" onTap="click" data-type='save'>{{saveIng?'提交中...':'提交审核'}}</button>
+    </view>
+</view>

@@ -1,0 +1,53 @@
+<view class="pageView">
+  <block>
+    <view class="itemView">
+      <view>收货人</view>
+      <input value="{{realname}}" class="input" onInput="inputChange" data-type="realname" />
+    </view>
+    <view class="itemView">
+      <view>联系电话</view>
+      <input value="{{cardMobile}}" class="input" onInput="inputChange" data-type="cardMobile" />
+    </view>
+    <view class="itemView" onTap="showAreaPicker">
+      <view>所在地区</view>
+      <!--<input value="{{cardMobile}}" class="input" onInput="inputChange" data-type="cardMobile" /> -->
+      <view a:if="{{!edit_district.province}}">请选择地区</view>
+      <view a:else style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis">
+        {{edit_district.province.name}}{{edit_district.city.name}}{{edit_district.district.name}}
+      </view>
+    </view>
+    <view class="itemView">
+      <view>详细地址</view>
+      <input value="{{cardMobile}}" class="input" onInput="inputChange" data-type="cardMobile" />
+    </view>
+  </block>
+  <view class="footerView">
+    <button class="btn" disabled="{{!disclaimerChecked || saveIng}}" onTap="click" data-type='save'>{{saveIng?'保存中...':'保存'}}</button>
+  </view>
+  <popup show="{{showPopup}}" position="bottom" onClose="onPopupClose">
+    <view class="area-picker {{showPopup?'active':''}}">
+      <view class="area-picker-bg" onTap="hideAreaPicker">
+        <view class="area-picker-top">
+          <text class="area-picker-cancel" onTap="onPopupClose">取消</text>
+          <text class="area-picker-confirm" onTap="bindMultiPickerChange">确认</text>
+        </view>
+        <view class="area-picker-row">
+          <picker-view indicator-style="height: 100rpx" style="width: 100%; height: 500rpx;" value="{{areaIndex}}" onChange="bindMultiPickerColumnChange" class="mypicker">
+            <!-- 省 -->
+            <picker-view-column>
+              <view a:for="{{provinceList}}" a:key="index" style="line-height: 100rpx;height: 100rpx;text-align: center">{{item.name}}</view>
+            </picker-view-column>
+            <!-- 市 -->
+            <picker-view-column>
+              <view a:for="{{cityList}}" a:key="index" style="line-height: 100rpx;height: 100rpx;text-align: center">{{item.name}}</view>
+            </picker-view-column>
+            <!-- 区 -->
+            <picker-view-column>
+              <view a:for="{{districtList}}" a:key="index" style="line-height: 100rpx;height: 100rpx;text-align: center">{{item.name}}</view>
+            </picker-view-column>
+          </picker-view>
+        </view>
+      </view>
+    </view>
+  </popup>
+</view>

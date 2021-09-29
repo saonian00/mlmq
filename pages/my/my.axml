@@ -1,0 +1,88 @@
+<view class="pageView">
+  <!-- 顶部 开始-->
+  <view class="my_top flex_col flex_col_center flex_row_center">
+    <view class="my_top_img">
+      <image mode="scaleToFill" src="" />
+    </view>
+    <view class="my_top_info">
+      普通会员
+    </view>
+    <view class="my_top_name">
+      够钟
+    </view>
+  </view>
+  <!-- 顶部 结束-->
+  <!-- 订单 开始-->
+  <view class="my_order">
+    <view class="my_order_title">
+      我的订单
+    </view>
+    <flex class="my_order_flex">
+      <flex-item>
+        <view class="flex_col flex_col_center flex_row_center">
+          <view style="height:60rpx;width:60rpx;margin-bottom:8rpx">
+            <image mode="scaleToFill" src="/res/icon-order-0.png" />
+          </view>
+          <view>
+            待付款
+          </view>
+        </view>
+      </flex-item>
+      <flex-item>
+        <view class="flex_col flex_col_center flex_row_center">
+          <view style="height:60rpx;width:60rpx;margin-bottom:8rpx">
+            <image mode="scaleToFill" src="/res/icon-order-1.png" />
+          </view>
+          <view>
+            待发货
+          </view>
+        </view>
+      </flex-item>
+      <flex-item>
+        <view class="flex_col flex_col_center flex_row_center">
+          <view style="height:60rpx;width:60rpx;margin-bottom:8rpx">
+            <image mode="scaleToFill" src="/res/icon-order-2.png" />
+          </view>
+          <view>
+            待收货
+          </view>
+        </view>
+      </flex-item>
+      <flex-item>
+        <view class="flex_col flex_col_center flex_row_center">
+          <view style="height:60rpx;width:60rpx;margin-bottom:8rpx">
+            <image mode="scaleToFill" src="/res/icon-order-3.png" />
+          </view>
+          <view>
+            已完成
+          </view>
+        </view>
+      </flex-item>
+      <flex-item>
+        <view class="flex_col flex_col_center flex_row_center">
+          <view style="height:60rpx;width:60rpx;margin-bottom:8rpx">
+            <image mode="scaleToFill" src="/res/icon-order-4.png" />
+          </view>
+          <view>
+            售后
+          </view>
+        </view>
+      </flex-item>
+      
+    </flex>
+  </view>
+  <!-- 订单 结束-->
+
+  <!-- 操作 开始 -->
+   <block a:for="{{menuList}}" a:key="index">
+        <view class="itemView" onTap="click" data-type="{{item.type}}" data-value="{{item.url}}">
+            <view><view style="height:60rpx;width:60rpx;float:left;margin:25rpx 10rpx">
+            <image mode="scaleToFill" src="/res/icon-order-0.png" />
+          </view>{{item.name}}<text class="subtitle">{{item.sub}}</text></view> 
+            <view class="iconRight">
+                <image src="/res/icon_right.png"></image>
+            </view>
+        </view>
+    </block>
+  <!-- 操作 开始 -->
+</view>

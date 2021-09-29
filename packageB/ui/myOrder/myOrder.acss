@@ -1,0 +1,35 @@
+.pageView {
+    padding-bottom: 60rpx;
+}
+.titleView {
+    width: 100%;
+    height: 110rpx;
+    line-height: 110rpx;
+    box-sizing: border-box;
+    padding:  0 32rpx;
+}
+.listView {
+    width: 100%;
+    height: auto;
+ }
+.orderItemView {
+    width: calc(100% - 64rpx);
+    height: 348rpx;
+    margin-bottom: 24rpx;
+    margin-left: 32rpx;
+    border-radius: 16rpx;
+    background: white;
+    box-sizing: border-box;
+    padding: 24rpx
+}
+.paramItemView {
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.paramItem_leftVeiw {
+    width: 100rpx;
+}
+

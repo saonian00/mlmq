@@ -1,0 +1,356 @@
+@import "/utils/xParse/wxParse.acss";
+.pageView {
+    padding-bottom: 200rpx;
+}
+
+.goodsPhotoView {
+    width: 100%;
+    height: 80vw !important;
+    position: relative;
+}
+
+.swiperView {
+    width: 100%;
+    height: 80vw !important;
+}
+
+.swiperItemView {
+    width: 100%;
+    height: 80vw;
+    background: gainsboro;
+}
+
+.swiperTipView {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 120rpx;
+    color: white;
+    background: linear-gradient(90deg, rgba(31, 206, 202, .8), rgba(31, 206, 202, .4));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    overflow: hidden;
+}
+
+.swiperTip_leftView {
+    width: calc(100% - 100rpx);
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.tipTextView {
+    width: calc(100% - 80rpx);
+    height: 80rpx;
+}
+.tipText_title, tipText_msg {
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.zhimaIcon {
+    width: 80rpx;
+    height: 80rpx;
+    background: white;
+    border-radius: 50%;
+}
+.zhimaIcon image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 10rpx;
+}
+.tipMsg {
+    color: rgba(255, 255, 255, .6);
+    font-size: 26rpx;
+}
+
+.dotView {
+    width: 100rpx;
+    min-width: 100rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    text-align: center;
+    color: white;
+    border-radius: 24rpx;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    background: rgba(0, 0, 0, .4);
+}
+
+.goodsInfoView {
+    width: 100%;
+    height: auto;
+    background: white;
+    box-sizing: border-box;
+    padding: 30rpx 32rpx;
+}
+.goodsName {
+    font-size: 34rpx;
+}
+.gridView {
+    width: 100%;
+    height: auto;
+    margin-top: 20rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tagView {
+    width: auto;
+    height: 40rpx;
+    line-height: 40rpx;
+    box-sizing: border-box;
+    padding: 0 8rpx;
+    font-size: 26rpx;
+    background: orange;
+    color: white;
+    border-radius: 8rpx;
+}
+.money {
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #666;
+}
+.certificationView {
+    width: 100%;
+    height: auto;
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.certificationItemView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #999;
+}
+.icon_certification {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+}
+
+.guideView {
+    width: 100%;
+    height: auto;
+    margin-top: 24rpx;
+    background: white;
+}
+.guideItemView {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    border-bottom: solid 1px #e5e5e5;
+}
+.guideTitleView {
+    width: 100%;
+    height: auto;
+    min-height: 140rpx;
+    box-sizing: border-box;
+    padding: 20rpx 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.guideTitleView1 {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 20rpx 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.iconDown {
+    width: 24rpx;
+    height: 14rpx;
+}
+.guideInfoView {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 40rpx 8rpx;
+    color: #999;
+    line-height: 40rpx;
+}
+
+
+
+.dividerView {
+    width: calc(100% - 100rpx);
+    height: 96rpx;
+    line-height: 96rpx;
+    margin-left: 50rpx;
+    position: relative;
+}
+.dividerView .line_v {
+    position: absolute;
+    left: 0;
+    top: calc((96rpx - 1px) / 2);
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+}
+.dividerView .dividerText {
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    top: 50%;   
+    font-size: 26rpx;
+    transform: translate(-50%, -50%); 
+    background: #efeff4;
+    padding: 0 10rpx;
+    z-index: 2;
+    color: #999;
+}
+
+.imgView {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 20rpx 32rpx;
+}
+
+.bottomView {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 120rpx;
+    background: white;
+    box-shadow: 0 -4rpx 20rpx 0 rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 9;
+}
+.bottomLeftView {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10rpx;
+}
+.menuItemView {
+    width: 120rpx;
+    height: 120rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 24rpx;
+}
+.menuItemIcon {
+    width: 48rpx;
+    height: 48rpx;
+}
+.menuText {
+    width: 100%;
+    height: 40rpx;
+    margin-top: 4rpx;
+    line-height: 40rpx;
+    text-align: center;
+}
+
+.confirmBtn {
+    width: 240rpx;
+    height: 120rpx;
+    background: #108ee9;
+    line-height: 120rpx;
+    text-align: center;
+    color: white;
+    font-size: 34rpx;
+}
+.btnColor{
+    background: Gold;
+}
+.noPackageInfoBtn {
+    width: 240rpx;
+    height: 120rpx;
+    line-height: 40rpx;
+    color: white;
+    font-size: 30rpx;
+    background: #d8d8d8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.goodsSelectDialogView {
+    width: 100%;
+    height: 1200rpx;
+    border-top-left-radius: 40rpx;
+    border-top-right-radius: 40rpx;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+.goodsSelectDialogView .dialog_titleView {
+    width: 100%;
+    height: 100rpx;
+    text-align: center;
+    font-size: 30rpx;
+    line-height: 100rpx;
+    position: relative;
+}
+.dialog_titleView .icon_close {
+    position: absolute;
+    right: 32rpx;
+    top: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+}
+.icon_close image {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 10rpx;
+}
+.dialogScrollView {
+    width: 100%;
+    height: calc(100% - 100rpx - 94rpx - 40rpx);
+}
+.typeTitleView {
+    width: 100%;
+    min-height: 88rpx;
+    height: auto;
+    line-height: 40rpx;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 20rpx 32rpx;
+    font-size: 30rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.typeGridView {
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    margin-bottom: 20rpx
+}
+.typeItemView {
+    width: auto;
+    min-height: 60rpx;
+    margin-right: 20rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    border-radius: 8rpx;
+    border: solid 1px #108ee9;
+    background: #108ee9;
+    color: white;
+}

@@ -1,0 +1,39 @@
+<view class="pageView bg_white">
+    <block a:if="{{batteryInfo && batteryInfo != [] && batteryInfo.imgs && batteryInfo.imgs.length > 0}}">
+        <view class="statusView textColor_blue textSize_30">状态: {{batteryInfo.tip}}</view>
+        <view class="vehicleView">
+            <view class="photo">
+                <image mode="aspectFill" src="{{batteryInfo.imgs[showIndex].img}}"/>
+            </view>
+            <swiper class="attachedView" vertical="{{true}}">
+                <block a:for="{{batteryInfo.imgs}}" a:key="index">
+                    <swiper-item a:if="{{showIndex != index}}">
+                        <view class="attachedItemView" onTap="click" data-type='look' data-index='{{index}}'>
+                            <view class="up">
+                                <image src="/res/icon_up.png"/></view>
+                            <image mode="aspectFit" src="{{item.img}}"/>
+                            <view class="down">
+                                <image src="/res/icon_down.png"/></view>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!--参数信息-->
+        <view class="dividerView">
+            <view class="line_v"></view>
+            <view class="dividerText">详细参数</view>
+        </view>
+        <view class="paramItemView" a:for="{{batteryInfo.params}}" a:key="index">
+            <view class="flex_1">{{item.name}}</view>
+            <view class="flex_1">{{item.value}}</view>
+        </view>
+        <button a:if="{{!!batteryInfo.devicePositionVO}}" class="btn mr_l_60 btn_map" onTap="click" data-type='location'>{{ showMap ? "关闭" : "打开" }}定位</button>
+        <!-- <button a:if="{{showMap}}" class="btn mr_l_60 btn_map" onTap="click" data-type='location'>导航</button> -->
+        <view a:if="{{showMap}}" class="mapView">
+            <map id="map" longitude="{{batteryInfo.devicePositionVO.lon}}" latitude="{{batteryInfo.devicePositionVO.lat}}" markers="{{markers}}" onRegionChange="regionchange" show-location="{{true}}" onCalloutTap="callouttap" style="width: 100%; height: 200px; margin-bottom:20px" include-points="{{includePoints}}" include-padding="{{includePadding}}">
+            </map>
+        </view>
+    </block>
+    <view a:else class="emptyView">暂无电池~</view>
+</view>

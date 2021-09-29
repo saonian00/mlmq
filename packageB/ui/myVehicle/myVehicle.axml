@@ -1,0 +1,33 @@
+<view class="pageView bg_white">
+    <block a:if="{{bikeInfo && bikeInfo != [] && bikeInfo.imgs && bikeInfo.imgs.length > 0}}">
+        <view class="statusView textColor_blue textSize_30">状态: {{bikeInfo.tip}}</view>
+        <view class="vehicleView">
+            <view class="photo">
+                <image mode="aspectFill" src="{{bikeInfo.imgs[showIndex].img}}"/>
+            </view>
+            <swiper class="attachedView" vertical="{{true}}">
+                <block a:for="{{bikeInfo.imgs}}" a:key="index">
+                    <swiper-item a:if="{{showIndex != index}}">
+                        <view class="attachedItemView" onTap="click" data-type='look' data-index='{{index}}'>
+                            <view class="up">
+                                <image src="/res/icon_up.png"/></view>
+                            <image mode="aspectFit" src="{{item.img}}"/>
+                            <view class="down">
+                                <image src="/res/icon_down.png"/></view>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!--参数信息-->
+        <view class="dividerView">
+            <view class="line_v"></view>
+            <view class="dividerText">详细参数</view>
+        </view>
+        <view class="paramItemView" a:for="{{bikeInfo.params}}" a:key="index">
+            <view class="flex_1">{{item.name}}</view>
+            <view class="flex_1">{{item.value}}</view>
+        </view>
+    </block>
+    <view a:else class="emptyView">暂无车辆~</view>
+</view>

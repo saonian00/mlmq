@@ -1,0 +1,165 @@
+<!-- 首页 -->
+<view class="pageView bg_white">
+    <!--芝麻信用-->
+    <view class="zhima_view" a:if="{{zhima_zuth==0 && false}}">
+        <view class="textSize_40 text_bold">
+            <view>支付宝预授权</view>
+            <view>（减免押金）</view>
+        </view>
+        <view class="rightView">
+            <view>信用状态未审核</view>
+            <view class="certificationBtn" onTap="click" data-type='authZhiMa'>提交认证</view>
+        </view>
+    </view>
+    <!--城市-->
+    <view class="cityView">
+        <view class="flex_row flex_col_center">
+            <view class="icon_zhima">
+                <image src="/res/icon_zhima.png"></image>
+            </view>
+            <view class="mr_l_12 textSize_30">信用租</view>
+            <view class="mr_t_4 mr_l_20 textSize_22 textColor_gray9">动动指头 立马开走</view>
+        </view>
+        <view class="flex_row flex_col_center flex_">
+            <view class="icon_location">
+                <image src="/res/icon_location.png"/>
+            </view>
+            <view a:if="{{locationAuth}}" class="mr_l_12 textSize_30 textColor_black" onTap="click" data-type='getLocation'>{{city?city:'定位中...'}}</view>
+            <view a:else class="mr_l_12 textSize_30 textColor_black" onTap="click" data-type='getLocation'>定位授权</view>
+        </view>
+        <view class="flex_row flex_col_center flex_">
+            <view class="icon_location">
+                <image onTap="click" data-type='getScan' src="/res/icon_scan.png"/>
+            </view>
+        </view>
+    </view>
+    <!--商品-->
+    <view class="goodsList">
+        <block a:if="{{indexData.packages.length > 0}}">
+            <view class="goodsItemView" a:for="{{indexData.packages}}" a:key="index" onTap="click" data-type='goodsItem' data-pid='{{item.p_id}}'>
+                <view class="goodsPhoto">
+                    <image mode="aspectFill" src="{{item.thumb}}"/>
+                    <view class="tagView">{{item.tag}}</view>
+                </view>
+                <view class="goodsInfoView">
+                    <view class="goodsInfoView_leftView">
+                        <view class="goodsName singleLine">{{item.name}}</view>
+                        <view a:if="{{item.battery_txt}}" class="tagView">{{item.battery_txt}}</view>
+                    </view>
+                    <view class="flex_1 textColor_red text_right textSize_34">{{item.money}}
+                        <text class="textSize_22">元/月</text></view>
+                </view>
+            </view>
+        </block>
+        <view class="emptyView" a:else>附近无套餐哦~</view>
+    </view>
+    <!--附近找车-->
+    <navigator class="searchView" hover-class="none" url="/packageA/ui/chooseSite/chooseSite?type=look&lat={{lat}}&lon={{lon}}">
+        <view class="flex_row flex_col_center">
+            <view class="icon_search">
+                <image mode="scaleToFill" src="/res/icon_search.png"/>
+            </view>
+            <view class="mr_l_16">附近找车</view>
+        </view>
+        <view class="flex_row flex_col_center">
+            <view class="textSize_26">共{{indexData.sum_store}}家门店</view>
+            <view class="iconRight mr_l_8">
+                <image src="/res/icon_right.png"></image>
+            </view>
+        </view>
+    </navigator>
+    <!--距离最近的站点-->
+    <view class="siteView" a:if="{{indexData.near != ''}}">
+        <view class="titleView">
+            <view class="flex_1 flex_row flex_between">
+                <text>距离您最近站点：</text>
+                <text class="textSize_26 textColor_gray9">距离您{{indexData.near.juli}}米</text>
+            </view>
+            <view class="mr_t_20 flex_1 flex_row flex_between">
+                <view class="siteInfo">
+                    <view class="siteName singleLine">{{indexData.near.name}}</view>
+                    <view class="siteAddress textSize_26 textColor_gray9 twoLine">{{indexData.near.address}}</view>
+                </view>
+                <view class="flex_row flex_col_center">
+                    <view class="icon_phone" onTap="click" data-type="callPhone">
+                        <image src="/res/icon_phone.png"/>
+                    </view>
+                    <view class="icon_nav mr_l_20" onTap="click" data-type="nav">
+                        <image src="/res/icon_nav.png"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="mapViewBox">
+            <map onTap="click" data-type="openMap" id="mapView" style="width: 100%;height: 360rpx;" longitude="{{lon}}" latitude="{{lat}}" show-location="{{true}}" markers="{{markers}}" include-points='{{includePoints}}' include-padding="{{includePadding}}">
+            </map>
+        </view>
+    </view>
+    <!--指南-->
+    <view class="guideView">
+        <view class="guideView_topView">
+            <view class="guideItemView" onTap="click" data-type='webView' data-id='t3'>
+                <view class="guideItem_leftView">
+                    <view class="textSize_30">租车指南</view>
+                    <view class="guide_msg mr_t_20 textSize_26 textColor_gray9 twoLine">一键信用租车，方便你我他</view>
+                </view>
+                <view class="guidePhoto">
+                    <image src="/res/icon_zn.png"/>
+                </view>
+                <view class="iconRight mr_l_8">
+                    <image src="/res/icon_right.png"></image>
+                </view>
+            </view>
+            <view class="guideItemView" onTap="click" data-type='webView' data-id='t2'>
+                <view class="guideItem_leftView">
+                    <view class="textSize_30">失信危害</view>
+                    <view class="guide_msg mr_t_20 textSize_26 textColor_gray9 twoLine">依照法律法规上报地方征信部门</view>
+                </view>
+                <view class="guidePhoto">
+                    <image src="/res/icon_sx.png"/>
+                </view>
+                <view class="iconRight mr_l_8">
+                    <image src="/res/icon_right.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="guideView_topView">
+            <view class="guideItemView" onTap="click" data-type='webView' data-id='t5'>
+                <view class="guideItem_leftView">
+                    <view class="textSize_30">租车步骤</view>
+                    <view class="guide_msg mr_t_20 textSize_26 textColor_gray9 twoLine">让您更快选到心仪套餐</view>
+                </view>
+                <view class="guidePhoto">
+                    <image src="/res/icon_zcbz.png"/>
+                </view>
+                <view class="iconRight mr_l_8">
+                    <image src="/res/icon_right.png"></image>
+                </view>
+            </view>
+            <view class="guideItemView" onTap="click" data-type='webView' data-id='t6'>
+                <view class="guideItem_leftView">
+                    <view class="textSize_30">退租提醒</view>
+                    <view class="guide_msg mr_t_20 textSize_26 textColor_gray9 twoLine">帮您更快了解如何退车</view>
+                </view>
+                <view class="guidePhoto">
+                    <image src="/res/icon_tksm.png"/>
+                </view>
+                <view class="iconRight mr_l_8">
+                    <image src="/res/icon_right.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="gridTitleView">车辆保障</view>
+        <view class="gridView">
+            <view class="gridItemView" a:for="{{security}}" a:key="index">
+                <view class="gridItemPhoto">
+                    <image src="{{item.icon}}"/>
+                </view>
+                <view class="gridItemRightView">
+                    <view>{{item.name}}</view>
+                    <view class="textSize_22 textColor_gray9 mr_t_8">{{item.msg}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

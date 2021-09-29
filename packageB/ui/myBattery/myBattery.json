@@ -1,0 +1,6 @@
+{
+    "defaultTitle": "我的电池",
+    "usingComponents": { 
+        "swipe-action": "/mini-antui/es/swipe-action/index" 
+    }
+}

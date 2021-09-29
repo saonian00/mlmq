@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "代扣填写",
+  "usingComponents": {
+    "verify-code": "mini-ali-ui/es/verify-code/index"
+  }
+}

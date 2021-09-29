@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "选择站点",
+  "pullRefresh": true,
+  "usingComponents": {
+    "search-bar": "/mini-antui/es/search-bar/index"
+  }
+}

@@ -1,0 +1,30 @@
+<view class="pageView">
+    <view class="titleView textColor_gray6">已绑定的银行卡</view>
+    <block a:if="{{bankCardList.length > 0}}">
+        <view class="listView">
+            <navigator url="/packageA/ui/withhold/withhold?id={{item.id}}&{{orderData!==undefined?'orderData='+orderData+'&':''}}{{orderId!==undefined?'orderId='+orderId:''}}" class="orderItemView" hover-class="none" a:for="{{bankCardList}}" a:key="index">
+                <view class="paramItemView flex_between">
+                    <view class="flex_2 text_bold textSize_30">{{item.bankName}}</view>
+                    <view class="flex_1 flex_row flex_col_center textColor_gray9 flex_row_end">
+                        <view class="iconRight mr_l_16">
+                            <image src="/res/icon_right.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="paramItemView textColor_gray6">
+                    <view class="paramItem_leftVeiw">银行卡</view>
+                    <view class="flex_1">{{item.cardNo}}</view>
+                </view>
+                <view class="paramItemView textColor_gray6">
+                    <view class="paramItem_leftVeiw">手机号</view>
+                    <view class="flex_1">{{item.cardMobile}}</view>
+                </view>
+            </navigator>
+        </view>
+        <view a:if="{{currentPage >= totalPage}}" class="noMoreView">没有更多了</view>
+    </block>
+    <view a:else class="emptyView">暂无绑定的银行卡~</view>
+    <view class="footerView">
+        <navigator url="/packageA/ui/withhold/withhold?{{orderData!==undefined?'orderData='+orderData+'&':''}}{{orderId!==undefined?'orderId='+orderId:''}}" class="btn">新增银行卡</navigator>
+    </view>
+</view>

@@ -1,0 +1,44 @@
+<view class="pageView">
+    <block>
+        <!-- <view class="notice">
+          信用卡用户需要填写银行卡安全码和有效期
+        </view> -->
+        <view class="itemView">
+            <view>银行名称</view>
+            <picker onChange="bindPickerChange" value="{{index}}" range="{{bankNameList}}">
+                <view class="row">
+                    <view class="row-extra">{{bankNameList[index]}}</view>
+                    <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+                </view>
+            </picker>
+        </view>
+        <view class="itemView">
+            <view>银行卡号</view>
+            <input value="{{bankCardNo}}" class="input" placeholder="请输入银行卡号" onInput="inputChange" data-type="bankCardNo"/>
+        </view>
+        <view class="itemView">
+            <view>持卡人姓名</view>
+            <input value="{{realname}}" class="input" disabled placeholder="请输入姓名" onInput="inputChange" data-type="realname"/>
+        </view>
+        <view class="itemView">
+            <view>证件号</view>
+            <input value="{{cardNo}}" class="input" disabled placeholder="请输入身份证号" onInput="inputChange" data-type="cardNo"/></view>
+        <view class="itemView">
+            <view>手机号</view>
+            <input value="{{cardMobile}}" class="input" placeholder="请输入手机号" onInput="inputChange" data-type="cardMobile"/>
+        </view>
+        <view a:if="{{(orderId || orderData) && cardNo && cardMobile}}" class="itemView">
+            <verify-code data-field="verifyCode" onInput="onInput" value="{{verifyCode}}" onClear="onClear" last="{{true}}" countDown="{{59}}" initActive="{{false}}" onSend="onSend"></verify-code>
+        </view>
+        <!--<view class="itemView"><view>银行卡安全码</view><input class="input" placeholder="请输入银行卡安全码" onInput="inputChange" data-type="securityCode"/></view><view class="itemView"><view>银行卡有效期</view><input class="input" placeholder="请输入银行卡有效期(yymm)" onInput="inputChange" data-type="periodvalidity"/></view> -->
+        <!--免责声明-->
+        <label a:if="{{(orderId || orderData)}}" style="{{background:'none',border:'none'}}" class="itemView">
+            <checkbox value="" checked="{{disclaimerChecked}}" onChange="disclaimerChange"/>
+            <text class="mr_l_20">我已阅读并同意
+                <text class="mr_l_20 textColor_blue text_underline" catchTap='click' data-type='disclaimer'>{{bankNameList[index]}}代扣协议</text></text>
+        </label>
+    </block>
+    <view class="footerView">
+        <button class="btn" disabled="{{!disclaimerChecked || saveIng}}"  onTap="click" data-type='save'>{{saveIng?'确定中...':'确定'}}</button>
+    </view>
+</view>

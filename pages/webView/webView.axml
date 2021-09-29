@@ -1,0 +1,3 @@
+<view class="pageView">
+    <web-view src="{{src}}" />
+</view>

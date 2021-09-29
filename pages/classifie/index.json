@@ -1,0 +1,10 @@
+{
+  "defaultTitle": "分类",
+  "usingComponents": {
+    "vtabs": "mini-ali-ui/es/vtabs/index",
+    "vtab-content": "mini-ali-ui/es/vtabs/vtab-content/index",
+    "flex": "mini-ali-ui/es/flex/index",
+    "flex-item": "mini-ali-ui/es/flex/flex-item/index"
+  },
+  "allowsBounceVertical": false
+}

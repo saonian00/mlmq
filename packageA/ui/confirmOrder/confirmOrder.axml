@@ -1,0 +1,124 @@
+<view class="pageView bg_white">
+  <view class="title" a:if="{{orderData.is_xuzu == 1}}">续租信息确认</view>
+  <view class="title" a:elif="{{orderData.is_diff_pay == 1}}">请支付滞纳金</view>
+  <view class="title" a:elif="{{orderData.is_repair_pay == 1}}">请支付检修金</view>
+  <view class="title" a:else>请确认您的订单</view>
+  <block a:if="{{orderData.is_xuzu == 1}}">
+    <view class="tip textColor_blue">本续租订单将在{{orderData.start_date}}开始生效</view>
+  </block>
+  <!--续租和下单要显示的-->
+  <block a:if="{{orderData.is_diff_pay != 1 && orderData.is_penalty_pay != 1 && orderData.is_repair_pay != 1}}">
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view class="dividerText">详情</view>
+    </view>
+    <view class="itemView">
+      <view class="text_bold">商品</view>
+    </view>
+    <view class="goodsItemView">
+      <view class="goodsPhoto">
+        <image mode="aspectFill" src="{{orderData.thumb}}" /></view>
+      <view class="goods_name twoLine">{{orderData.name}}</view>
+      <view class="text_right">
+        <view a:for="{{orderData.info}}" a:key="index">{{item}}</view>
+      </view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">站点</view>
+      <view class="flex_1 mr_l_40 singleLine">{{orderData.site_name}}</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">租期</view>
+      <view class="mr_l_40">{{orderData.day}}个月</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">{{orderData.ptype === 2 ? '金额':'租金'}}</view>
+      <view class="mr_l_40">{{orderData.money?orderData.money+"元":"后付订单将于下月产生费用"}}</view>
+    </view>
+    <view class="itemView flex_row flex_col_center" a:if="{{orderData.insure.is_insure == true}}">
+      <view class="text_bold">保险</view>
+      <view class="mr_l_40">{{orderData.insure.insure_money}}元</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">{{orderData.ptype === 2 ? '下单时间':'起租时间'}}</view>
+      <view class="mr_l_40">{{orderData.start_date}}</view>
+    </view>
+    <view a:if="{{orderData.ptype !== 2}}" class="itemView flex_row flex_col_center">
+      <view class="text_bold">退租时间</view>
+      <view class="mr_l_40">{{orderData.end_date}}</view>
+    </view>
+    <view class="itemView mr_b_40 flex_between" a:if="{{orderData.is_xuzu == 1}}">
+      <text>
+        <text class="text_bold">保险</text>
+        <text class="mr_l_20 textColor_red">{{orderData.insure.insure_money}}元/次</text></text>
+      <view class="flex_row flex_col_center">
+        <text class="textColor_gray9">保驾护航全靠它</text>
+        <switch class="mr_l_20" checked="{{insurance}}" onChange="insuranceChange" />
+      </view>
+    </view>
+    <view class="itemView textColor_orange textSize_20 bor_bot_e5">
+      温馨提示：请在本时间内到租电站点退还车辆，逾期将产生滞纳金。
+    </view>
+  </block>
+  <!--续租滞纳金-->
+  <block a:if="{{orderData.is_diff_pay == 1}}">
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view class="dividerText">费用明细</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">超时时长</view>
+      <view class="mr_l_40">{{orderData.diff.diff_day}}天</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">滞纳金计算</view>
+      <view class="mr_l_40">{{orderData.diff.diff_price}}元/天</view>
+    </view>
+  </block>
+  <!--退租违约金-->
+  <block a:if="{{orderData.is_penalty_pay == 1}}">
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view class="dividerText">费用明细</view>
+    </view>
+    <view class="itemView flex_row flex_col_center">
+      <view class="text_bold">违约金</view>
+      <view class="mr_l_40">{{orderData.penalty.diffAmount}}元</view>
+    </view>
+  </block>
+  <!--退租检修金-->
+  <block a:if="{{orderData.is_repair_pay == 1}}">
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view class="dividerText">检修费用明细</view>
+    </view>
+    <view a:for="{{orderData.repairDetails}}" a:key="index" class="itemView flex_row flex_col_center">
+      <view class="text_bold">{{item.name}}</view>
+      <view class="mr_l_40">{{item.amount}}元</view>
+    </view>
+  </block>
+  <!--免责声明-->
+  <label class="itemView mr_t_20" a:if="{{orderData.is_diff_pay != 1 && orderData.is_penalty_pay != 1 && orderData.is_repair_pay != 1}}">
+    <checkbox value="" checked="{{disclaimerChecked}}" onChange="disclaimerChange" />
+    <text class="mr_l_20">我已阅读
+      <text class="mr_l_20 mr_r_20 textColor_blue text_underline" catchTap='click' data-type='disclaimer'>免责声明</text>
+      <text a:if="{{objectArray[arrIndex].id!==6}}">和
+        <text class="mr_l_20 textColor_blue text_underline" catchTap='click' data-type='leaseContract'>租赁合同</text></text>
+    </text>
+  </label>
+  <!--底部按钮-->
+  <view class="bottomView">
+    <view class="bottomLeftView textColor_gray9">
+      合计
+      <text class="mr_l_20 mr_r_20 textSize_48 textColor_red">{{orderData.total_money || orderData.money + (orderData.insure.is_insure ? orderData.insure.insure_money : 0) || orderData.diff.diff_money || orderData.penalty.diffAmount || orderData.amount}}</text> 元
+    </view>
+    <picker a:if="{{objectArray.length>1}}" onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
+      <view style="{{marginRight:10}}" class="row">
+        <view class="row-title">选择支付方式</view>
+        <view class="row-extra">{{objectArray[arrIndex].name}}</view>
+        <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+    <button class="confirmBtn" onTap="click" data-type="confirmClick" disabled="{{!disclaimerChecked || saveIng}}">{{saveIng?'支付中...':'去支付'}}</button>
+  </view>
+</view>

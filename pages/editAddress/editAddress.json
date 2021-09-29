@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "编辑地址",
+  "allowsBounceVertical":"NO",
+  "usingComponents": {
+    "verify-code": "mini-ali-ui/es/verify-code/index",
+    "popup": "mini-ali-ui/es/popup/index"
+  }
+}

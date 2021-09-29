@@ -1,0 +1,21 @@
+<view class="pageView">
+    <block>
+        <view class="notice">
+          通过实名验证以后可以下单租车
+        </view>
+        <view class="itemView">
+            <view>姓名</view>
+            <icon a:if="{{is_certify === 1}}" style="margin-top:0.5rem" type="success" aria-label="success" />
+            <input a:else class="input" placeholder="请输入姓名" onInput="inputChange" data-type="name"/>
+        </view>
+        <view class="itemView">
+            <view>身份证号</view>
+            <icon a:if="{{is_certify === 1}}" style="margin-top:0.5rem" type="success" aria-label="success" />
+            <input a:else class="input" placeholder="请输入身份证号" onInput="inputChange" data-type="IDnumber"/>
+        </view>
+    </block>
+    <view class="footerView">
+        <button a:if="{{is_certify === 1}}" class="btn" disabled="ture">已认证</button>
+        <button a:else class="btn" disabled="{{saveIng}}" loading="{{saveIng}}" onTap="click" data-type='save'>{{saveIng ? '确定中...' : '确定'}}</button>
+    </view>
+</view>

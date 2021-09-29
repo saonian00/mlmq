@@ -1,0 +1,53 @@
+<view class="pageView">
+    <!--距离最近的站点-->
+    <view class="siteView_box">
+        <view class="siteView" a:if="{{siteList.length > 0}}">
+            <view class="titleView">
+                <view class="flex_1 flex_row flex_between">
+                    <text>{{topSiteIndex == 0 ? '距离您最近站点' : '查看站点'}}：</text>
+                    <text class="textSize_26 textColor_gray9">距离您{{siteList[topSiteIndex].juli}}米</text>
+                </view>
+                <view class="mr_t_20 flex_1 flex_row flex_between">
+                    <view class="siteInfo">
+                        <view class="siteName singleLine">{{siteList[topSiteIndex].s_name}}</view>
+                        <view class="siteAddress textSize_26 textColor_gray9 twoLine">{{siteList[topSiteIndex].address}}</view>
+                    </view>
+                    <view class="flex_row flex_col_center flex_row_end">
+                        <view class="lookBtn" onTap="click" data-type="callPhone" data-phone='{{siteList[topSiteIndex].s_tel}}' a:if="{{siteList[topSiteIndex].s_tel}}">咨询</view>
+                        <view a:if="{{siteList[topSiteIndex].bike_num > 0}}" class="chooseBtn" onTap="click" data-type="choose">选择</view>
+                        <view a:else class="lookBtn" style="width: 120rpx;" onTap="click">库存不足</view>
+                    </view>
+                </view>
+            </view>
+            <map onTap="click" data-type='openMap' id="mapView" style="width: 100%;height: 360rpx;" longitude="{{lon}}" latitude="{{lat}}" show-location="{{true}}" setting="{{mapSetting}}" markers="{{markers}}" include-points="{{includePoints}}" include-padding='{{includePadding}}'>
+            </map>
+        </view>
+        <view a:if="{{type === 'choose'}}" class="siteListTitleView">可选站点</view>
+        <view a:if="{{type === 'look'}}" class="siteListTitleView">
+            <text class="flex_row flex_col_center">附近站点</text>
+            <!-- <view class="searchBar"><search-bar value="{{search_text}}" placeholder="搜索" onClear="handleClear" onCancel="handleClear" onSubmit="onSearch" showCancelButton="{{false}}" /></view> -->
+        </view>
+    </view>
+    <!--可选站点-->
+    <view class="alternativeView">
+        <block a:for="{{siteList}}" a:key="index">
+            <view class="siteItemView">
+                <view class="siteItem_leftView">
+                    <view class="flex_row flex_col_center">
+                        <view class="siteItem_leftView_siteName singleLine">{{item.s_name}}</view>
+                        <view class="textSize_26 textColor_gray9">剩余车辆：{{item.bike_num}}</view>
+                        <view class="tagView" a:if="{{index == 0}}">推荐</view>
+                    </view>
+                    <view class="siteItem_leftView_siteAddress textSize_26 textColor_gray9 twoLine">{{item.address}}</view>
+                </view>
+                <view class="lookBtn {{topSiteIndex == index ? 'lookBtn_blue' : ''}}" onTap="click" data-type="look" data-index='{{index}}'>查看</view>
+            </view>
+        </block>
+    </view>
+    <view class="moreView" a:if='{{currentPage< totalPage}}'>
+        <view class="moreBtn" onTap="click" data-type='getNextPage'>加载更多</view>
+    </view>
+    <view class="moreView" a:else>
+        没有更多了~
+    </view>
+</view>

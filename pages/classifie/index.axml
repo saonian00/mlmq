@@ -1,0 +1,101 @@
+<!-- 分类 -->
+<view class="pageView">
+  <!-- 搜索栏 开始-->
+  <navigator class="search_view" url="/pages/my/my">搜索</navigator>
+  <!-- 搜索栏 结束-->
+  <view class="classifie_view textSize_24">
+    <view class="classifie_first">分类</view>
+    <flex class="classifie_flex">
+      <flex-item>
+        <view>综合</view></flex-item>
+      <flex-item>
+        <view>最新</view></flex-item>
+      <flex-item>
+        <view>价格</view></flex-item>
+      <flex-item>
+        <view>销量</view></flex-item>
+    </flex>
+  </view>
+  <vtabs tabs="{{tabs}}" onTabClick="handleChange" onChange="onChange" activeTab="{{activeTab}}" sameFontSize="{{false}}" 
+    tabBarlineShow="{{true}}">
+    <block a:for="{{tabs}}">
+      <vtab-content anchor="{{item.anchor}}">
+        <flex wrap="wrap">
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title textSize_24 twoLine">
+              Apple iPhone 12 原装正品Apple iPhone 12 原装正品Apple iPhone
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_22">¥5688.00</text>
+              <text class="zone_sales textSize_20">已销762件</text>
+            </view>
+          </view>
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title singleLine">
+              Apple iPhone 12 原装正品
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_24">¥5688.00</text>
+              <text class="zone_sales textSize_22">销量：762件</text>
+            </view>
+          </view>
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title singleLine">
+              Apple iPhone 12 原装正品
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_24">¥5688.00</text>
+              <text class="zone_sales textSize_22">销量：762件</text>
+            </view>
+          </view>
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title singleLine">
+              Apple iPhone 12 原装正品
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_24">¥5688.00</text>
+              <text class="zone_sales textSize_22">销量：762件</text>
+            </view>
+          </view>
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title singleLine">
+              Apple iPhone 12 原装正品
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_24">¥5688.00</text>
+              <text class="zone_sales textSize_22">销量：762件</text>
+            </view>
+          </view>
+          <view class="zone_placeholder shadow_10 radius_20">
+            <view style="height:280rpx">
+              <image mode="scaleToFill" src="/res/iphone1.png" />
+            </view>
+            <view class="zone_title singleLine">
+              Apple iPhone 12 原装正品
+            </view>
+            <view class="zone_info">
+              <text class="zone_price textSize_24">¥5688.00</text>
+              <text class="zone_sales textSize_22">销量：762件</text>
+            </view>
+          </view>
+        </flex>
+      </vtab-content>
+    </block>
+  </vtabs>
+  <!-- 专区 结束 -->
+</view>

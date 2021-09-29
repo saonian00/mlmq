@@ -1,0 +1,70 @@
+<view class="pageView">
+  <view class="titleView textColor_orange">进行中的订单</view>
+  <view class="listView" a:if="{{unfinished_orderList.length > 0}}">
+    <navigator url="/packageB/ui/orderDetail/orderDetail?id={{item.order_id}}" class="orderItemView" hover-class="none" a:for="{{unfinished_orderList}}" 
+      a:key="index">
+      <view class="paramItemView flex_between">
+        <view onLongTap="onLongTap" data-sn="{{item.order_sn}}" class="flex_2 text_bold textSize_30">{{item.order_sn}}</view>
+        <view class="flex_1 flex_row flex_col_center textColor_gray9 flex_row_end {{item.is_chaoshi == 1 ? 'textColor_red' : ''}}">
+          {{item.order_status_txt}}
+          <view class="iconRight mr_l_16">
+            <image src="/res/icon_right.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="paramItemView textColor_gray6">
+        <view class="paramItem_leftVeiw">商品</view>
+        <view class="flex_1">{{item.package_name}}</view>
+      </view>
+      <view class="paramItemView textColor_gray6">
+        <view class="paramItem_leftVeiw">站点</view>
+        <view class="flex_1">{{item.site_name}}</view>
+      </view>
+      <view a:if="{{item.ptype !== 2}}" class="paramItemView textColor_gray6">
+        <view class="paramItem_leftVeiw">租期</view>
+        <view class="flex_1">{{item.zuqi}}</view>
+      </view>
+      <view class="paramItemView textColor_gray6">
+        <view class="paramItem_leftVeiw">价格</view>
+        <view class="flex_1 flex_row flex_col_center textColor_red">￥{{item.money}}
+          <icon class="mr_l_16" a:if="{{item.is_chaoshi == 1}}" type="warn" color="red" size="16"></icon></view>
+      </view>
+    </navigator>
+  </view>
+  <view a:else class="noMoreView">暂无进行中的订单~</view>
+  <view class="titleView textColor_gray6">已完成的订单</view>
+  <block a:if="{{completed_orderList.length > 0}}">
+    <view class="listView">
+      <navigator url="/packageB/ui/orderDetail/orderDetail?id={{item.order_id}}" class="orderItemView" hover-class="none" 
+        a:for="{{completed_orderList}}" a:key="index">
+        <view class="paramItemView flex_between">
+          <view onLongTap="onLongTap" data-sn="{{item.order_sn}}" class="flex_2 text_bold textSize_30">{{item.order_sn}}</view>
+          <view class="flex_1 flex_row flex_col_center textColor_gray9 flex_row_end">
+            {{item.order_status_txt}}
+            <view class="iconRight mr_l_16">
+              <image src="/res/icon_right.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class="paramItemView textColor_gray6">
+          <view class="paramItem_leftVeiw">商品</view>
+          <view class="flex_1">{{item.package_name}}</view>
+        </view>
+        <view class="paramItemView textColor_gray6">
+          <view class="paramItem_leftVeiw">站点</view>
+          <view class="flex_1">{{item.site_name}}</view>
+        </view>
+        <view a:if="{{item.ptype !== 2}}" class="paramItemView textColor_gray6">
+          <view class="paramItem_leftVeiw">租期</view>
+          <view class="flex_1">{{item.zuqi}}</view>
+        </view>
+        <view class="paramItemView textColor_gray6">
+          <view class="paramItem_leftVeiw">价格</view>
+          <view class="flex_1 textColor_red">￥{{item.money}}</view>
+        </view>
+      </navigator>
+    </view>
+    <view a:if="{{currentPage >= totalPage}}" class="noMoreView">没有更多了</view>
+  </block>
+  <view a:else class="emptyView">暂无已完成的订单~</view>
+</view>

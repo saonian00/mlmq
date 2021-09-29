@@ -1,0 +1,11 @@
+<view class="pageView">
+    <block>
+        <view class="itemView">
+            <view>推荐人手机号</view>
+            <input class="input" placeholder="{{old_mobile ? old_mobile : '请输入推荐人手机号'}}" onBlur="inputChange" data-type="tj_mobile"/>
+        </view>
+    </block>
+    <view class="footerView">
+        <button class="btn" disabled="{{saveIng}}" loading="{{saveIng}}" onTap="click" data-type='save'>{{saveIng?'确定中...':'确定'}}</button>
+    </view>
+</view>

@@ -1,0 +1,136 @@
+<!-- 首页 -->
+<view class="pageView">
+  <!-- 导航栏 -->
+  <navigator url="/pages/my/my">
+    <search-bar class="index_search" focus="{{true}}" disabled="{{true}}" />
+  </navigator>
+  <!-- Banner 开始 -->
+  <view style="margin-top:20rpx" class="banner">
+    <swiper class="banner_swiper" autoplay="true" interval="5000" duration="300" indicator-dots="true" circular="true" previous-margin="60rpx" 
+      next-margin="60rpx">
+      <block a:for="{{banner_list}}" a:key="{{item.id}}">
+        <swiper-item style="text-align:center">
+          <navigator url="" style="z-index:9">
+            <image src="{{item.img}}" class="slide-image-1" style="padding:0;height:360rpx" mode="aspectFill" />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view style="padding: 16rpx 0;">
+      <image style="width: 100%; display: block;" mode="widthFix" src="/res/index-bar.png" />
+    </view>
+  </view>
+  <!-- Banner 结束 -->
+  
+  <!-- 分类 开始 -->
+  <view class="classified">
+    <flex a:if="{{brandList}}" wrap="wrap">
+      <flex direction="column" class="placeholder inline">
+        <flex-item>
+          <image class="placeholder_img" mode="scaleToFill" src="/res/icon_certification.png" /></flex-item>
+        <flex-item>
+          <text class="textColor_gray3 textSize_22">领券中心</text></flex-item></flex>
+      <flex a:for="{{brandList}}" a:key="{{item.brandId}}" direction="column" class="placeholder inline">
+        <flex-item>
+          <image class="placeholder_img" mode="scaleToFill" src="{{item.brandImg}}" />
+        </flex-item>
+        <flex-item>
+          <text class="textColor_gray3 textSize_22">{{item.brandName}}</text></flex-item>
+      </flex>
+    </flex>
+  </view>
+  <!-- 专区 结束 -->
+  <!-- 精品 开始 -->
+  <view class="boutique flex_row">
+    <view class="boutique_view1">
+      <view class="radius_20">
+        <view class="recommend_text">
+          精品推荐
+        </view>
+        <view class="flex_row goodsInfo_viex">
+          <view class="flex_2 goodsInfo_text">
+            <view class="goodsInfo_text1">iPhone 12</view>
+            <view class="goodsInfo_text2">5G全网通手机</view>
+            <view class="goodsInfo_text3">¥ 5688</view>
+          </view>
+          <view style="padding:90rpx 30rpx 30rpx 0" class="flex_1">
+            <image mode="scaleToFill" src="{{getTop[0].goodsImg}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="boutique_view2 flex_col">
+      <view style="background:rgb(232,247,244)">
+        <view class="flex_row">
+          <view style="padding-top:0" class="flex_2 goodsInfo_text">
+            <view style="line-height:30rpx; margin-top:30rpx" class="goodsInfo_text1">iPhone 12</view>
+            <view class="goodsInfo_text2">5G全网通手机</view>
+            <view style="line-height:30rpx" class="goodsInfo_text3">¥ 5688</view>
+          </view>
+          <view style="padding:20rpx 20rpx 0 0" class="flex_1">
+            <image mode="scaleToFill" src="{{getTop[1].goodsImg}}" />
+          </view>
+        </view>
+      </view>
+      <view style="background:rgb(249,229,228)">
+        <view class="flex_row">
+          <view style="padding-top:0" class="flex_2 goodsInfo_text">
+            <view style="line-height:30rpx; margin-top:30rpx" class="goodsInfo_text1">iPhone 12</view>
+            <view class="goodsInfo_text2">5G全网通手机</view>
+            <view style="line-height:30rpx" class="goodsInfo_text3">¥ 5688</view>
+          </view>
+          <view style="padding:20rpx 20rpx 0 0" class="flex_1">
+            <image mode="scaleToFill" src="{{getTop[2].goodsImg}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 精品 结束 -->
+  <!-- 好物 开始 -->
+  <view class="goodThing">
+    <view class="goodThing_title">
+      好物推荐
+      <text class="goodThing_title_more">更多></text>
+    </view>
+    <scroll-view a:if="{{getRecommend.length>0}}" class="scroll-view_H" scroll-x="{{true}}" style="width: 100%">
+      <view a:for="{{getRecommend}}" a:key="{{item.id}}" class="scroll-view-item_H flex_col flex_col_center flex_row_center">
+        <view style="width:100rpx;height:120rpx">
+          <image mode="scaleToFill" src="{{item.goodsImg}}" />
+        </view>
+        <view class="goodThing_name">OPPO A93</view>
+        <view class="goodThing_momey">¥ 1999</view>
+        <view class="goodThing_btn textSize_32">立即购买</view>
+      </view>
+      
+    </scroll-view>
+  </view>
+  <!-- 好物 结束 -->
+  <!-- 专区 开始 -->
+  <view class="zone">
+    <tabs tabsName="activeTab" tabs="{{tabs}}" onTabClick="handleTabClick" activeTab="{{activeTab}}" swipeable="{{true}}" 
+      tabBarUnderlineWidth="0">
+      <block a:for="{{tabs}}">
+        <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}">
+          <view class="tab-content">
+            <flex wrap="wrap" aif="{{getListByCatCode.length>0}}">
+              <view class="zone_placeholder shadow_10 radius_20" a:for="{{getListByCatCode}}" a:key="{{item.id}}">
+                <view style="height:300rpx">
+                  <image mode="scaleToFill" src="{{item.goodsImg}}" />
+                </view>
+                <view class="zone_title singleLine">
+                  Apple iPhone 12 原装正品
+                </view>
+                <view class="zone_info">
+                  <text class="zone_price textSize_24">¥{{item.price}}</text>
+                  <text class="zone_sales textSize_22">销量：{{item.num}}件</text>
+                </view>
+              </view>
+            </flex>
+          </view>
+        </tab-content>
+      </block>
+    </tabs>
+  </view>
+  <!-- 专区 结束 -->
+</view>

@@ -1,0 +1,10 @@
+{
+    "defaultTitle": "我的银行卡",
+    "pullRefresh": true,
+    "usingComponents": {
+    "tabs": "/mini-antui/es/tabs/index",
+    "tab-content": "/mini-antui/es/tabs/tab-content/index"
+  }
+}
+
+ 

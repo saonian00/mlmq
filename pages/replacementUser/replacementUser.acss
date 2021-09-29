@@ -1,0 +1,32 @@
+
+.pageView {
+    border-top: solid 1rpx #e5e5e5;
+}
+
+.itemView {
+    width: 100%;
+    height: 110rpx;
+    line-height: 110rpx;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    border-bottom: solid 1rpx #e5e5e5;
+}
+
+.footerView {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+}

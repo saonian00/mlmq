@@ -1,0 +1,6 @@
+{
+    "defaultTitle": "商品详情",
+   "usingComponents":{
+       "popup": "/mini-antui/es/popup/index"
+   }
+}

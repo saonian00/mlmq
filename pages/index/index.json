@@ -1,0 +1,11 @@
+{
+  "defaultTitle": "手机",
+  "pullRefresh": true,
+  "usingComponents": {
+    "search-bar": "mini-ali-ui/es/search-bar/index",
+    "flex": "mini-ali-ui/es/flex/index",
+    "flex-item": "mini-ali-ui/es/flex/flex-item/index",
+    "tabs": "mini-ali-ui/es/tabs/index",
+    "tab-content": "mini-ali-ui/es/tabs/tab-content/index"
+  }
+}

@@ -1,0 +1,173 @@
+<view class="pageView">
+  <view class="topBg"></view>
+  <view class="contentView">
+    <view class="title">{{orderDetail.order_status_txt}}</view>
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view class="dividerText">商品信息</view>
+    </view>
+    <view class="goodsItemView" a:for="{{orderDetail.goods}}" a:key="index">
+      <view class="goodsPhoto">
+        <image mode="aspectFill" src="{{item.img}}" /></view>
+      <view class="goods_centerView">
+        <view class="goods_name singleLine">{{item.name}}
+          <!-- <text a:if="{{orderDetail.order_status=='3' && item.flag=='battery' && orderDetail.huanDianVisible=='1'}}" onTap="click" 
+            data-type='changeBattery' style="margin-left: 10px; color:white;background-color:rgb(16, 142, 233);border-radius:5px;padding:0px 5px">换电</text> -->
+        </view>
+        <view class="mr_t_4 textColor_gray9 textSize_26" a:if="{{item.code != ''}}">{{item.code}}</view>
+      </view>
+      <view class="flex_1 text_right">{{item.flag=='bike'?"车辆":"电池"}}X{{item.num}}</view>
+    </view>
+    <!--保险信息-->
+    <block a:if="{{(orderDetail.ptype !== 2) && (orderDetail.order_status == 2 || orderDetail.order_status == 3　|| orderDetail.order_status == 5 || orderDetail.order_status == 9)}}">
+      <view class="dividerView">
+        <view class="line_v"></view>
+        <view class="dividerText">保险信息</view>
+      </view>
+      <view class="paramItemView">
+        <view>保险</view>
+        <view a:if="{{orderDetail.insure == 0}}" class="mr_l_40 flex_1 singleLine">未购买
+          <text a:if="{{orderDetail.buyInsure == 1}}" onTap="click" data-type='buyInsure' data-insure='{{orderDetail.insure_money}}' 
+            style="margin-left: 10px; color: rgb(16, 142, 233); border: 1px solid rgb(16, 142, 233); border-radius: 10px; padding: 5px">购买保险</text>
+        </view>
+        <view a:elif="{{orderDetail.insure == 1}}" class="mr_l_40 flex_1 singleLine">已购买车辆盗抢险</view>
+      </view>
+    </block>
+    <!--押金信息-->
+    <block a:if="{{orderDetail.auth_type == 1 || orderDetail.auth_type == 2}}">
+      <view class="dividerView">
+        <view class="line_v"></view>
+        <view class="dividerText">押金信息</view>
+      </view>
+      <view class="paramItemView">
+        <view>押金</view>
+        <view class="mr_l_40 flex_1 singleLine">{{orderDetail.auth_type == 2 ? '免押金' : orderDetail.auth_type == 1 ? (orderDetail.yajin_money + '元') : ''}}</view>
+      </view>
+    </block>
+    <!--合同信息-->
+    <block a:if="{{orderDetail.order_status !== 1 && orderDetail.order_status !== 2 && orderDetail.order_status !== 8 && !!orderDetail.contractUrl}}">
+      <view class="dividerView">
+        <view class="line_v"></view>
+        <view class="dividerText">合同信息</view>
+      </view>
+      <view class="paramItemView">
+        <view>合同</view>
+        <view class="mr_l_40 flex_1 singleLine" onTap="click" data-type='contractShow' style="{{textDecoration:'underline',color:'rgb(16, 142, 233)'}}">查看合同</view>
+      </view>
+    </block>
+    <!--滞纳金信息-->
+    <block a:if="{{orderDetail.diff.diff_day && orderDetail.diff.diff_money}}">
+      <view class="dividerView">
+        <view class="line_v"></view>
+        <view class="dividerText">滞纳金信息</view>
+      </view>
+      <view class="paramItemView">
+        <view>滞纳时长</view>
+        <view class="mr_l_40 flex_1 singleLine">{{orderDetail.diff.diff_day}}天</view>
+      </view>
+      <view class="paramItemView">
+        <view>滞纳金额</view>
+        <view class="mr_l_40 flex_1 singleLine">{{orderDetail.diff.diff_money}}元</view>
+      </view>
+      <view class="mr_t_40 mr_b_40 flex_1 text_right" a:if="{{orderDetail.order_status != 1}}">
+        <text class="textSize_34">支付金额
+          <text class="mr_l_16 mr_r_16 textSize_60">{{orderDetail.diff.diff_money}}</text>元</text>
+        <view class="mr_t_20 textColor_gray9" a:if="{{orderDetail.diff.type}}">支付方式：{{orderDetail.diff.type}}</view>
+      </view>
+    </block>
+    <!--当前最近租赁信息-->
+    <view class="dividerView">
+      <view class="line_v"></view>
+      <view a:if="{{orderDetail.ptype !== 2}}" class="dividerText">{{orderDetail.xuzu && orderDetail.xuzu.length > 0 ? '续租信息' : '租赁信息'}}</view>
+      <view a:else class="dividerText">订单信息</view>
+    </view>
+    <block a:for="{{orderDetail.rent}}" a:key="index">
+      <view class="paramItemView">
+        <view>{{item.name}}</view>
+        <view class="mr_l_40 flex_1 singleLine">{{item.value}}</view>
+      </view>
+    </block>
+    <view class="mr_t_40 mr_b_40 flex_1 text_right" a:if="{{orderDetail.order_status != 1 || orderDetail.order_status != 9}}">
+      <text class="textSize_34">{{orderDetail.pay.type?'支付金额':'订单金额'}}
+        <text class="mr_l_16 mr_r_16 textSize_60">{{orderDetail.pay.money}}</text>元</text>
+      <view class="mr_t_20 textColor_gray9" a:if="{{orderDetail.pay.type}}">支付方式：{{orderDetail.pay.type}}</view>
+    </view>
+    <!--历史租赁信息-->
+    <block a:for="{{orderDetail.xuzu}}" a:key="index">
+      <view class="dividerView">
+        <view class="line_v"></view>
+        <view class="dividerText">{{index == orderDetail.xuzu.length - 1 ? '租赁信息' : '续租信息'}}</view>
+      </view>
+      <view class="paramItemView" a:for="{{item.info}}" a:for-item="kItem" a:key="kIndex">
+        <view>{{kItem.name}}</view>
+        <view class="mr_l_40 flex_1 singleLine">{{kItem.value}}</view>
+      </view>
+      <view class="mr_t_40 mr_b_40 flex_1 text_right">
+        <text class="textSize_34">支付金额
+          <text class="mr_l_16 mr_r_16 textSize_60">{{item.pay.money}}</text>元</text>
+        <view class="mr_t_20 textColor_gray9">支付方式：{{item.pay.type}}</view>
+      </view>
+    </block>
+    <view a:if="{{orderDetail.ptype !== 2}}" class="mr_t_20 mr_b_60 flex_1 textColor_gray9">
+      <view>风险与责任提示:</view>
+      <view class="mr_t_40">请按时还车，否则将上报地方个人征信。</view>
+    </view>
+    <view a:if="{{orderDetail.order_status == 6}}" class="mr_t_60 flex_1 textColor_blue">请尽快前往站点，由站长审核还车。超时未通过仍会产生滞纳金。</view>
+    <view a:if="{{orderDetail.order_status == 7}}" class="mr_t_60 flex_1 textColor_blue">{{orderDetail.tip_msg}}</view>
+    <view a:if="{{orderDetail.order_status == 6 && orderDetail.hasRepairLog == 1 && orderDetail.repairLogPay == 0}}" class="mr_t_60 flex_1 flex_row">
+      <view class="icon_error">
+        <image src="/packageB/res/icon_error.png" />
+      </view>
+      <view class="flex_1 textColor_red">本订单已确认产生了检修金{{orderDetail.repairAmount}}元，请前往网点处理。</view>
+    </view>
+    <view a:if="{{orderDetail.order_status == 4}}" class="mr_t_60 flex_1 flex_row">
+      <view class="icon_error">
+        <image src="/packageB/res/icon_error.png" />
+      </view>
+      <view class="flex_1 textColor_red">本订单已超时{{orderDetail.diff.diff_day}}天，已锁定该车辆，并产生了滞纳金{{orderDetail.diff.diff_money}}元，请前往网点处理。</view>
+    </view>
+    <!--待提车导航-->
+    <view class="navView" a:if="{{orderDetail.order_status == 2}}">
+      <view class="nav_leftView">
+        <view>请前往站点：</view>
+        <view class="mr_t_8 textSize_30 singleLine">{{orderDetail.site.name}}</view>
+        <view class="textColor_gray9 singleLine">{{orderDetail.site.address}}</view>
+      </view>
+      <view class="flex_1 flex_row flex_col_center">
+        <view class="icon_phone" a:if="{{orderDetail.site.tel}}" onTap="click" data-type="callPhone" data-phone='{{orderDetail.site.tel}}'>
+          <image src="/res/icon_phone.png" />
+        </view>
+        <view class="icon_nav mr_l_20" onTap="click" data-type="nav">
+          <image src="/res/icon_nav.png" />
+        </view>
+      </view>
+    </view>
+    <!--操作按钮-->
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{orderDetail.order_status == 9}}">
+      <button a:if="{{orderDetail.deductType === 1}}" class="btn btn_hollow " onTap="click" data-type='refund' data-refundRate='{{orderDetail.refundRate}}'>申请退款</button>
+      <button a:if="{{orderDetail.deductType === 2}}" class="btn btn_hollow" onTap="click" data-type='cancel'>取消订单</button>
+      <button class="btn mr_l_60" onTap="click" data-type='antSignUrl'>签约合同</button>
+    </view>
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{orderDetail.order_status == 4}}">
+      <button class="btn mr_l_60" onTap="click" data-type='payDiff'>请先支付滞纳金￥{{orderDetail.diff.diff_money}}</button>
+    </view>
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{orderDetail.order_status == 6 && orderDetail.hasRepairLog == 1 && orderDetail.repairLogPay == 0}}">
+      <button class="btn mr_l_60" onTap="click" data-type='payRepair'>请先支付检修费￥{{orderDetail.repairAmount}}</button>
+    </view>
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{orderDetail.order_status == 2}}">
+      <button class="btn btn_hollow" onTap="click" data-type='refund' data-refundRate='{{orderDetail.refundRate}}'>申请退款</button>
+      <button class="btn mr_l_60" onTap="click" data-type='callPhone' data-phone='{{orderDetail.site.tel}}'>联系站点</button>
+    </view>
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{ orderDetail.order_status == 3}}">
+      <button class="btn btn_hollow" onTap="click" data-type='tui'>退租</button>
+      <button a:if="{{orderDetail.antContract !== 1}}" class="btn mr_l_60" onTap="click" data-type='xuzu'>续租</button>
+    </view>
+    <view class="mr_t_40 flex_1 flex_row flex_col_center" a:if="{{orderDetail.order_status == 1}}">
+      <button class="btn btn_hollow" onTap="click" data-type='cancel'>取消订单</button>
+      <button class="btn mr_l_60" onTap="click" data-type='continue' disabled="{{saveIng}}">{{saveIng?'支付中':'继续支付'}}</button>
+    </view>
+  </view>
+</view>
+<view class="icon_kefu" a:if="{{orderDetail.site.tel}}" onTap="click" data-type='callPhone' data-phone='{{orderDetail.site.tel}}'>
+  <image mode="scaleToFill" src="/packageB/res/icon_kefu.png" />
+</view>

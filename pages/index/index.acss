@@ -1,0 +1,206 @@
+.pageView {
+  background: white;
+}
+
+.index_search .am-search-input {
+  border: none;
+  background: rgb(245, 245, 245);
+}
+
+.banner_swiper {
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.banner, .classified, .zone, .boutique, .goodThing {
+  padding: 0 24rpx;
+}
+
+.boutique_view1,.boutique_view2{
+  width: 50%;
+  height: 300rpx;
+  padding: 0 20rpx;
+}
+
+.boutique_view1>view {
+  width: 100%;
+  height: 100%;
+  background: rgb(233, 239, 250);
+}
+
+.boutique_view2>view {
+  width: 100%;
+  height: 200rpx;
+  background: yellow;
+  margin-top: 20rpx;
+   border-radius: 20rpx;
+}
+
+.boutique_view2>view:first-child {
+  margin-top: 0;
+}
+
+.placeholder {
+  color: #bbb;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.inline {
+  width: 25%;
+}
+
+.placeholder_img {
+  height: 50px;
+  width: 50px;
+}
+
+.am-flexbox-item {
+  margin-left: 0;
+}
+
+.boutique_flex {
+  height: 300rpx;
+  padding: 10px;
+}
+
+.recommend {
+  background: rgb(233, 239, 250);
+}
+
+.recommend_text{
+  width:160rpx;
+  height:56rpx;
+  background:rgb(128, 153, 236);
+  color: white;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 30rpx;
+  border-radius: 20rpx 0 20rpx 0;
+
+}
+.goodsInfo_viex{
+  height: 244rpx;
+}
+.goodsInfo_text{
+  box-sizing: border-box;
+  padding: 30rpx 0 0 20rpx;
+ 
+}
+.goodsInfo_text1{
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 45rpx;
+}
+.goodsInfo_text2{
+  font-size: 20rpx;
+  line-height: 30rpx;
+  color: rgb(107,119,111);
+}
+.goodsInfo_text3,.goodThing_momey{
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 60rpx;
+  color: red;
+}
+
+.recommend1 {
+  width: 100%;
+  height: 100%;
+  background: yellow;
+}
+
+.flex_item>view {
+  width: 100%!important;
+}
+
+.goodThing_title{
+  margin: 40rpx 0 20rpx;
+  font-weight: 500;
+  font-size: 30rpx;
+}
+
+.goodThing_title_more{
+  color: rgb(140,140,140);
+  font-weight: 400;
+  font-size: 26rpx;
+  float: right;
+  display:  inline-flex;;
+}
+.scroll-view_H{
+  white-space: nowrap;
+  display:flex;
+}
+.scroll-view-item_H{
+  background:#F8F8FA;
+  flex-shrink:0;
+  flex-grow:0;
+  width: 260rpx;
+  height: 360rpx;
+  margin-right:20rpx;
+  border-radius: 20rpx;
+}
+.goodThing_name{
+  margin-top: 20rpx;
+  font-weight: 500;
+  /* line-height: 60rpx; */
+}
+.goodThing_btn{
+  text-align: center;
+  font-weight:400;
+  color: white;
+  line-height: 50rpx;
+  width: 180rpx;
+  border-radius: 50rpx;
+  background: linear-gradient(to bottom, #FFD589, #FFA543);
+}
+
+.tab-content {
+  box-sizing: border-box;
+  background:#F8F8FA;
+  padding-bottom: 20rpx;
+}
+
+.radio-group {
+  padding: 30rpx 40rpx 0;
+}
+
+.radio {
+  margin-right: 10px;
+}
+
+.demo-title {
+  margin: 30rpx 40rpx 0;
+  padding-bottom: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+.am-tabs-bar-tab-mainTitle{
+  font-size: 30rpx;
+  padding-top: 30rpx;
+}
+.am-tabs-bar{
+  border-bottom: none;
+}
+.zone_placeholder {
+  background: white;
+  text-align: center;
+  margin: 20rpx 2%;
+  width: 46%;
+}
+.zone_title{
+  text-align: left;
+  padding: 20rpx 15rpx;
+}
+.zone_info{
+  padding:0 15rpx 20rpx;
+}
+.zone_price{
+  color: red;
+  font-weight: 500;
+  float: left;
+}
+.zone_sales{
+  color: #989898;
+  float: right;
+}

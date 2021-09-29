@@ -1,0 +1,53 @@
+.pageView {
+  background: white;
+}
+
+.search_view{
+  text-align: center;
+  border:1px solid #E3E3E3;
+  color:#B1B1B1;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+.classifie_view{
+  line-height: 60rpx;
+}
+.classifie_first{
+  width: 200rpx;
+  float: left;
+  text-align: center;
+}
+.classifie_flex{
+  width: calc(100% - 240rpx);
+  float: left;
+  text-align: center;
+}
+.am-vtabs-bar , .am-vtabs-bar-tab{
+  width: 200rpx;
+}
+
+.zone_placeholder {
+  background: white;
+  text-align: center;
+  margin: 10rpx 1%;
+  width: 48%;
+}
+.zone_title{
+  height: 54rpx;
+  text-align: left;
+  padding: 0 15rpx;
+  margin:10rpx 0;
+}
+.zone_info{
+  padding:0 15rpx 20rpx;
+}
+.zone_price{
+  color: red;
+  font-weight: 500;
+  float: left;
+}
+.zone_sales{
+  color: #989898;
+  float: right;
+}

@@ -1,0 +1,95 @@
+.pageView {
+    border-top: solid 1px #e5e5e5;
+    padding-bottom: 60rpx;
+}
+
+.statusView {
+    width: 100%;
+    height: 110rpx;
+    line-height: 110rpx;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+}
+
+.vehicleView {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+}
+
+.photo {
+    width: 60vw;
+    height: 48vw;
+    border: solid 1px #f4f4f4;
+}
+
+.attachedView {
+    width: calc(100% - 60vw - 20rpx);
+    height: 48vw;
+    margin-left: 20rpx;
+}
+.attachedItemView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.attachedView .up {
+    position: absolute;
+    left: calc((100% - 24rpx) / 2);
+    top: 40rpx;
+    width: 24rpx;
+    height: 14rpx;
+}
+.attachedView .down { 
+    position: absolute;
+    left: calc((100% - 24rpx) / 2);
+    bottom: 40rpx;
+    width: 24rpx;
+    height: 14rpx;
+}
+
+
+
+.dividerView {
+    width: calc(100% - 100rpx);
+    height: 96rpx;
+    line-height: 96rpx;
+    margin-left: 50rpx;
+    position: relative;
+}
+.dividerView .line_v {
+    position: absolute;
+    left: 0;
+    top: calc((96rpx - 1px) / 2);
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+}
+.dividerView .dividerText {
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    top: 50%;   
+    font-size: 26rpx;
+    transform: translate(-50%, -50%); 
+    background: white;
+    padding: 0 10rpx;
+    z-index: 2;
+    color: #999;
+}
+
+
+.paramItemView {
+    width: 100%;
+    height: 88rpx;
+    color: #999;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    padding: 0 100rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

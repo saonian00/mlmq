@@ -1,0 +1,175 @@
+<import src="/utils/xParse/wxParse.axml" />
+<view class="pageView">
+  <view class="goodsPhotoView">
+    <swiper onChange="swiperChange" circular="{{true}}" autoplay="{{true}}">
+      <block a:for="{{packageInfo.thumb}}">
+        <swiper-item >
+          <view class="swiperItemView">
+            <image mode="aspectFill" src="{{item}}" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="swiperTipView">
+      <view class="swiperTip_leftView">
+        <view class="zhimaIcon">
+          <image src="/res/icon_zhima.png" />
+        </view>
+      </view>
+      <view class="dotView">{{swiperIndex}}/{{packageInfo.thumb.length}}</view>
+    </view>
+  </view>
+  <view class="goodsInfoView">
+    <view class="goodsName twoLine">{{packageInfo.name}} {{packageInfo.battery_txt?"（"+packageInfo.battery_txt+"）":null}}</view>
+    <view class="gridView">
+      <view class="tagView">{{packageInfo.tag}}</view>
+    </view>
+    <view a:if='{{packageInfo.ptype === 2}}' class="money">￥
+      <text class="textSize_40 textColor_red">{{packageInfo.money}}</text>/元</view>
+    <view a:if='{{packageInfo.ptype !== 2}}' class="money">月租金：
+      <text class="textSize_30 textColor_red">￥{{packageInfo.money}}</text>
+      <text style="padding-left: 40rpx">租期：</text>
+      <text class=" textSize_30 textColor_red">{{packageInfo.ptype === 1 ? '1' :packageInfo.diffConfigVO.monthNum}}</text>个月
+    </view>
+    <view a:if='{{packageInfo.ptype === 1}}' class="certificationView">
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        芝麻信用免押金
+      </view>
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        安全节能
+      </view>
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        盗抢险
+      </view>
+    </view>
+    <view a:if='{{packageInfo.ptype===2}}' class="certificationView">
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        花呗分期
+      </view>
+    </view>
+    <view a:if='{{packageInfo.ptype===3}}' class="certificationView">
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        以租代售
+      </view>
+    </view>
+    <view a:if='{{packageInfo.ptype===4}}' class="certificationView">
+      <view class="certificationItemView">
+        <view class="icon_certification">
+          <image src="/res/icon_certification.png" />
+        </view>
+        连续租赁
+      </view>
+    </view>
+  </view>
+  <!--使用手册-->
+  <view class="guideView">
+    <view class="guideItemView" a:for="{{guideList}}" a:key="index">
+      <view class="guideTitleView {{item.ext ? 'bor_bot_e5' : ''}}" onTap="click" data-type="guideItemTitle" data-index="{{index}}">
+        <view class="flex_1">
+          <view class="textSize_30">{{item.title}}</view>
+          <view class="mr_t_16 textSize_24 textColor_gray9">{{item.tip}}</view>
+        </view>
+        <!--<view class="{{item.ext ? 'iconDown' : 'iconRight'}}"><image src="{{item.ext ? '/res/icon_down.png' : '/res/icon_right.png'}}"></image></view> -->
+      </view>
+      <!--<view class="guideInfoView" a:if="{{item.ext}}"><text decode>{{item.info}}</text></view> -->
+    </view>
+  </view>
+  <!--详细信息-->
+  <view class="dividerView">
+    <view class="line_v"></view>
+    <view class="dividerText">详细信息</view>
+  </view>
+  <view class="imgView bg_white">
+    <block a:for="{{packageInfo.content}}">
+      <image class="mr_t_16" lazy-load='{{true}}' src="{{item}}" mode="widthFix"></image>
+    </block>
+  </view>
+  <!--底部按钮-->
+  <view class="bottomView">
+    <view class="bottomLeftView">
+      <view class="menuItemView" onTap="click" data-type="toHome">
+        <view class="menuItemIcon">
+          <image src="/res/icon_store.png" /></view>
+        <view class="menuText">首页</view>
+      </view>
+      <view class="menuItemView" onTap="click" data-type="callPhone" data-phone='{{packageInfo.kf_tel}}' a:if="{{packageInfo.kf_tel}}">
+        <view class="menuItemIcon">
+          <image src="/res/kefu.png" /></view>
+        <view class="menuText">客服</view>
+      </view>
+      <button class="menuItemView" hover-class="none" open-type="share">
+        <view class="menuItemIcon">
+          <image src="/res/icon_share_gray.png" /></view>
+        <view class="menuText">分享</view>
+      </button>
+    </view>
+    <button a:if="{{packageInfo.is_no_city != 1}}" class="confirmBtn" onTap="click" data-type="confirmClick" disabled="{{saveIng}}" 
+      loading="{{saveIng}}">{{saveIng ? '处理中...' : '信用租'}}</button>
+    <view a:else class="noPackageInfoBtn" disabled='{{true}}'>
+      <text decode='{{true}}'>当前城市\n无该套餐</text></view>
+  </view>
+</view>
+<!--选择弹窗-->
+<popup show='{{goodsSelectDialogShow}}' disableScroll="{{false}}" position="bottom" zIndex="999" onClose="onPopupDialogClose">
+  <view class="goodsSelectDialogView">
+    <view class="dialog_titleView">请选择
+      <view class="icon_close" catchTap="click" data-type='closeDialog'>
+        <image src="/res/icon_close.png" />
+      </view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="dialogScrollView">
+      <view class="typeTitleView">车型</view>
+      <view class="gridView typeGridView">
+        <view class="typeItemView">
+          <text a:for="{{packageInfo.bike_models}}">
+            <text key="{{index}}">{{item.name}}/</text></text></view>
+      </view>
+      <view class="typeTitleView">电池</view>
+      <view class="gridView typeGridView">
+        <view class="typeItemView">
+          <text a:for="{{packageInfo.battery_models}}">
+            <text key="{{index}}">{{item.name}}/</text></text></view>
+      </view>
+      <view class="typeTitleView">租赁周期</view>
+      <view class="gridView typeGridView">
+        <view class="typeItemView">1个月</view>
+      </view>
+      <navigator class="typeTitleView" hover-class="none" url="/packageA/ui/chooseSite/chooseSite?type=choose&lat={{lat}}&lon={{lon}}&p_id={{p_id}}">
+        <text class="flex_1">选择租赁站点</text>
+        <view class="flex_2 flex_col">
+          <view class="flex_row flex_col_center">
+            <text class="flex_1 textColor_gray9 text_right">{{packageInfo.tuijian_store.site_id?packageInfo.tuijian_store.name:'请选择'}}</text>
+            <view class="iconRight mr_l_8">
+              <image src="/res/icon_right.png"></image>
+            </view>
+          </view>
+          <view class="textSize_20 text_right textColor_orange" a:if='{{packageInfo.tuijian_store.site_id && tuijian_sid == packageInfo.tuijian_store.site_id}}'>已为您推荐最近站点，也可以点击选中变更。</view>
+        </view>
+      </navigator>
+      <view class="typeTitleView">
+        <text>保险
+          <text class="mr_l_20 textColor_red">{{packageInfo.insure_money}}元/次</text></text>
+        <view class="flex_row flex_col_center">
+          <text class="textColor_gray9">保驾护航全靠它</text>
+          <switch class="mr_l_20" checked="{{insurance}}" onChange="insuranceChange" />
+        </view>
+      </view>
+    </scroll-view>
+    <button class="btn" onTap="click" data-type="confirmOrder">确认</button>
+  </view>
+</popup>

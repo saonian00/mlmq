@@ -1,0 +1,19 @@
+<view class="pageView">
+    <block>
+        <view class="notice">
+          通过实名验证以后可以下单租车
+        </view>
+        <view class="itemView">
+            <view>姓名</view>
+            <input class="input" placeholder="请输入姓名" onInput="inputChange" data-type="name"/>
+        </view>
+        <view class="itemView">
+            <view>身份证号</view>
+            <input class="input" placeholder="请输入身份证号" onInput="inputChange" data-type="IDnumber"/>
+        </view>
+    </block>
+    <view class="footerView">
+        <button class="btn" style="color: #108ee9; background: white; margin-right: 20rpx" onTap="click" data-type='later'>稍后认证</button>
+        <button class="btn" disabled="{{saveIng}}" loading="{{saveIng}}" onTap="click" data-type='save'>{{saveIng?'提交中...':'提交'}}</button>
+    </view>
+</view>
