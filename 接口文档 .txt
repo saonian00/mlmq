@@ -1,0 +1,207 @@
+请求头
+
+token ： 9bf71aca-bd5a-4059-a316-1db2965760aa
+shopId ：1
+ 
+返回统一格式
+{
+  "code":200,
+  "count":0,
+  "msg":"错误信息",
+  "isSuccess" : true/false ,
+  "data":{}/[] 业务数据
+}
+
+1.获取收货地址
+url :  /userAddress/getList
+
+返回对象：
+data : [
+  {
+    "receviceName":"接收人",
+    "receviceTel":"接收电话",
+    "province":"省",
+    "city":"市",
+    "county":"区/县/县级市",
+    "addressDetail":"详细地址",
+    "isDefault":0 //是否默认地址 0否1是
+    "id":1
+  }
+]
+
+2.保存地址
+url: /userAddress/save
+参数 
+     id : 添加为空
+     receviceName : 
+     receviceTel :
+     province : 
+     city : 
+     county : 
+     addressDetail : 
+     isDefault  : 是否默认 0否 1是    为空默认否
+返回
+  isSuccess : true / false
+
+3.删除地址
+url : /userAddress/del/1 -> 1 要删除的id
+返回 
+  isSuccess : true/false
+
+4.设置默认地址
+url : /userAddress/setDefault/1 -> 1:要设置的id
+返回 
+   isSuccess : true / false
+
+5.首页轮播
+url : /home/banner
+返回 
+data :[
+   {
+      "img":"",
+      "goodsId":1 ->商品id
+   }
+]
+
+6.获取品牌列表
+url : /home/brandList
+返回 
+data :[
+   {
+       "brandId":1 品牌id，
+       "brandName" : 品牌名称 ,
+       "brandImg" : 品牌图片,
+       "url" : "品牌跳转地址"
+   }
+]
+
+7.获取推荐商品
+url : /home/getRecommend
+返回 
+data : [
+  {
+    "goodsImg":"图片",
+    "goodsId":1 商品id
+  }
+]
+
+8.获取精品商品
+url : /home/getTop
+返回 
+data : [
+  {
+    "goodsImg":"图片",
+    "goodsId":1 商品id
+  }
+]
+
+9.获取分类列表
+url : /cat/getList
+返回 ：
+data : [
+  {
+     "catCode":"分类编码",
+     "catName":"分类名称"
+  }
+]
+
+
+10.获取品牌下商品信息 
+ url : /goods/getBrandList
+参数  brandId : 1 ->品牌id
+返回  
+data:[
+  {
+    "id":1 ->商品id,
+    "goodsName":"商品名称",
+    "price": 1.2 价格,
+    "num" : 1 销量
+  }
+]
+
+11.获取分类下商品
+url : /goods/getListByCatCode
+参数 catCode : 分类编码
+返回  
+data:[
+  {
+    "id":1 ->商品id,
+    "goodsName":"商品名称",
+    "price": 1.2 价格,
+    "num" : 1 销量
+  }
+]
+
+12.商品详情
+url : /goods/goodsDetail/1 ->商品id
+返回 
+data :{
+   "goodsId":  1 商品id,
+   "goodsName" : "商品名称",
+   "num" : 1 销量 ,
+   "content" : 商品图文介绍,
+   "orderCode" : "订单号 提交订单时使用，用于防重复提交，同一个只能提交一次订单创建",
+   "banners" : ["","","轮播图片"],
+   "isCollection":  是否收藏 0否 1是
+   "specs":[
+      {
+        "hisPrice" : "历史价格",
+        "currentPrice" : "当前价格",
+        "colors" : ["红","白","黑"],
+        "capacity" : “8+64G”
+        "id": 1 规格id
+      }
+   ]
+}
+
+13.收藏列表
+url : /goods/collection/getList
+返回 ：
+data:[
+   {
+    "id":1 ->商品id,
+    "goodsName":"商品名称",
+    "price": 1.2 价格,
+    "num" : 1 销量
+  }
+]
+
+14 收藏商品
+url : /goods/collection/set/id ->商品id
+返回 
+data true / false
+
+15 取消收藏
+url :/goods/collection/cancel/id ->商品id
+返回
+data true/false
+
+
+
+16 获取优惠卷列表
+url /userCoupon/getList
+参数 status 0 未使用 1已使用 2已过期
+data: [
+        {
+            "id": 1,
+            "couponName": "满100减10 文本",
+            "couponQuantity": 10.00 面额,
+            "couponMin": 100.00 最小起订额,
+            "isUse": 0 是否使用 0 否 1是,
+            "isExceed": 1 是否过期 0否1是,
+            "startStr": "2021-09-20 23:53:27",
+            "endStr": "2021-09-26 23:53:32"
+        }
+    ]
+
+
+17 获取区域信息 
+url /userAddress/getProvinces
+参数 pid  0 默认为省级 
+返回 
+data:[
+  {
+    "id":"当前id 即下级pid",
+    "cname":"名称"
+  }
+]
