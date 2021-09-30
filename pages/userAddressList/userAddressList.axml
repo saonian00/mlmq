@@ -1,0 +1,29 @@
+<view class="pageView">
+  <block a:if="{{userAddList.length>0}}">
+    <view a:for="{{userAddList}}" a:key="index" class="itemView">
+      <view class="itemView_top">
+        <view>收货人：{{item.receviceName}}
+          <text style="float:right">{{item.receviceTel}}</text></view>
+        <view>收货地址：{{item.province}}{{item.city}}{{item.county}}{{item.addressDetail}}</view>
+      </view>
+      <view class="flex_row itemView_btm">
+        <view a:if="{{item.isDefault === 0}}">
+          <text onTap="click" data-type="setDefault" data-id="{{item.id}}">设为默认</text>
+        </view>
+        <view>
+          <text onTap="click" data-type="editAddress" data-id="{{item.id}}">
+            编辑
+          </text>
+        </view>
+        <view>
+          <text onTap="click" data-type="delAddress" data-id="{{item.id}}">
+            删除
+          </text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="footerView">
+    <navigator class="btn" url="/pages/editAddress/editAddress">新增地址</navigator>
+  </view>
+</view>

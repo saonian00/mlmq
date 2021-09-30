@@ -1,0 +1,39 @@
+.pageView{
+  margin-bottom: 200rpx;
+}
+
+.itemView {
+    width: 100%;
+    background: white;
+    margin-bottom: 20rpx;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    border-bottom: solid 1rpx #e5e5e5;
+}
+.itemView_top{
+  padding-top: 30rpx;
+  border-bottom:1px solid  #ccc;
+}
+.itemView_top>view{
+  margin-bottom: 30rpx;
+}
+.itemView_btm>view{
+  padding:20rpx 0;
+  text-align: center;
+  flex: 1;
+}
+
+.footerView {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+    background-color: #efeff4;
+}

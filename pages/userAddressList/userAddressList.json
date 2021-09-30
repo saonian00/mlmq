@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "收货地址",
+  "usingComponents": {
+    "verify-code": "mini-ali-ui/es/verify-code/index",
+    "popup": "mini-ali-ui/es/popup/index"
+  }
+}

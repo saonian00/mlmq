@@ -7,6 +7,7 @@ let base = App.constants;
 Page(
   base.pageCheck({
     data: {
+      userAddList: [],//地址列表
       showPopup: false,
       switch: false,
       areaAddress: '',
@@ -18,13 +19,14 @@ Page(
     },
     onLoad(query) {
       // 页面加载
-      this.httpGetCertifyInfo();
+      this.httpGetList();
     },
     onReady() {
       // 页面加载完成
     },
     onShow() {
       // 页面显示
+      this.httpGetList();
     },
     onHide() {
       // 页面隐藏
@@ -136,11 +138,72 @@ Page(
     click(e) {
       let _that = this;
       let types = e.currentTarget.dataset.type;
+      let id = e.currentTarget.dataset.id;
       switch (types) {
-        case "save":
-          _that.httpSave();
+        case "setDefault":
+          my.confirm({
+            content: '是否将此地址设置为默认地址?',
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            success: (result) => {
+              if (result.confirm) {
+                _that.setDefault(id);
+              }
+            },
+          });
+          break;
+        case "editAddress":
+          // _that.httpSave();
+          break;
+        case "delAddress":
+          my.confirm({
+            content: '是否删除此地址?',
+            confirmButtonText: '删除',
+            cancelButtonText: '取消',
+            success: (result) => {
+              if (result.confirm) {
+                _that.delAddress(id);
+              }
+            },
+          });
           break;
       }
+    },
+    setDefault(id) {
+      let _that = this;
+      base.http.httpPost({
+        loading: "处理中...",
+        url: "userAddress/setDefault/" + id,
+        success(res) {
+          my.showToast({
+            content: res.msg,
+          })
+          _that.httpGetList()
+        },
+        fail(res) {
+          my.showToast({
+            content: res.msg,
+          })
+        }
+      })
+    },
+    delAddress(id) {
+      let _that = this;
+      base.http.httpPost({
+        loading: "处理中...",
+        url: "userAddress/del/" + id,
+        success(res) {
+          my.showToast({
+            content: res.msg,
+          })
+          _that.httpGetList()
+        },
+        fail(res) {
+          my.showToast({
+            content: res.msg,
+          })
+        }
+      })
     },
     /**
      * 输入处理
@@ -165,20 +228,16 @@ Page(
       });
     },
     /**
-     * 加载省市区
+     * 加载收货地址列表
      */
-    httpGetCertifyInfo() {
+    httpGetList() {
       let _that = this;
       base.http.httpPost({
-        url: "userAddress/getChina",
+        url: "userAddress/getList",
         success(result) {
           _that.setData({
-            areaList: result.data,
-            provinceList: result.data,
-            cityList: result.data[0].children,
-            districtList: result.data[0].children[0].children,
+            userAddList: result.data,
           })
-          _that.initArea()
         }
       });
     },
@@ -211,17 +270,21 @@ Page(
             isDefault: isDefault ? 1 : 0
           },
           success(res) {
-            my.showToast({
-              content: res.msg,
-            })
-            setTimeout(() => {
-              my.navigateBack({});
-            }, 1000);
+            my.alert({
+              title: res.msg,
+              buttonText: "我知道了",
+              success: () => {
+                setTimeout(() => {
+                  my.navigateBack({});
+                }, 1);
+              }
+            });
           },
           fail(res) {
-            my.showToast({
-              content: res.msg,
-            })
+            my.alert({
+              title: res.msg,
+              buttonText: "我知道了"
+            });
             _that.setData({
               saveIng: false
             });

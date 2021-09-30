@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/userAddressList/userAddressList",
     "pages/editAddress/editAddress",
     "pages/index/index",
     "pages/classifie/index",
